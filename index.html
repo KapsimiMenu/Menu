@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,252 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --olive-drab: #4B5320;
-            --dark-olive: #2c3014;
-            --khaki: #C3B091;
-            --sand: #e8dcc4;
-            --black: #111111;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--olive-drab);
-            background-image: repeating-linear-gradient(
-                45deg,
-                rgba(0,0,0,0.05) 0px,
-                rgba(0,0,0,0.05) 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            color: var(--sand);
-            font-family: 'Courier Prime', monospace;
-            display: flex; /* Flex layout for the whole page */
-            min-height: 100vh;
-        }
-
-        /* --- VERTICAL HEADER / SIDEBAR --- */
-        header {
-            background-color: var(--dark-olive);
-            color: var(--khaki);
-            text-align: center;
-            padding: 2rem 1.5rem;
-            border-right: 5px solid var(--black);
-            box-shadow: 4px 0 8px rgba(0,0,0,0.5);
-            width: 250px;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Black Ops One', system-ui;
-            margin: 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: var(--khaki);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        /* --- TAB NAVIGATION (Now vertical inside header) --- */
-        .tabs-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-
-        .tab-btn {
-            background-color: var(--black);
-            color: var(--khaki);
-            border: 2px solid var(--olive-drab);
-            padding: 12px 20px;
-            font-family: 'Black Ops One', system-ui;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s, color 0.3s;
-            width: 100%;
-        }
-
-        .tab-btn:hover {
-            background-color: var(--dark-olive);
-        }
-
-        .tab-btn.active {
-            background-color: var(--khaki);
-            color: var(--black);
-            border-color: var(--khaki);
-            box-shadow: 0 0 10px rgba(195, 176, 145, 0.4);
-        }
-
-        /* --- MAIN CONTENT AREA --- */
-        .main-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- MENU STYLES (Reverted to original grid) --- */
-        .menu-section {
-            margin-bottom: 3rem;
-            background-color: var(--black);
-            padding: 2rem;
-            border: 2px dashed var(--khaki);
-            border-radius: 5px;
-        }
-
-        .section-title {
-            color: var(--khaki);
-            font-size: 2rem;
-            border-bottom: 2px solid var(--olive-drab);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-
-        .subcategory-title {
-            color: var(--sand);
-            font-size: 1.4rem;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px dotted var(--olive-drab);
-            display: inline-block;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .menu-grid:last-child {
-            margin-bottom: 0; 
-        }
-
-        .menu-item {
-            background-color: var(--dark-olive);
-            padding: 1.5rem;
-            border-left: 5px solid var(--khaki);
-            position: relative;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 10px;
-            border-bottom: 1px solid rgba(195, 176, 145, 0.3);
-            padding-bottom: 5px;
-        }
-
-        .item-name {
-            font-size: 1.2rem;
-            color: var(--sand);
-        }
-
-        .item-price {
-            font-family: 'Black Ops One', system-ui;
-            color: var(--khaki);
-            font-size: 1.3rem;
-        }
-
-        .item-desc {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #b0a896;
-            margin: 0;
-        }
-
-        .tag {
-            background-color: var(--khaki);
-            color: var(--black);
-            font-family: 'Black Ops One', system-ui;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 3px;
-            position: absolute;
-            top: -10px;
-            right: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--dark-olive);
-            color: var(--khaki);
-            border-top: 5px solid var(--black);
-            font-weight: bold;
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            
-            header {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 5px solid var(--black);
-                box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .tabs-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .tab-btn {
-                width: auto;
-                flex: 1 1 100px;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
@@ -272,219 +27,200 @@
             
             <div id="hot-drinks" class="menu-section tab-content" style="display: block;">
                 <h2 class="section-title">Ζεστά ροφήματα</h2>
-
                 <h3 class="subcategory-title">Καφέδες</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Καπουτσίνο</h4>
-                            <span class="item-price">1.30€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Cappuccino.webp" alt="Καπουτσίνο" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Καπουτσίνο</h4>
+                                <span class="item-price">1.30€</span>
+                            </div>
+                            <p class="item-desc">Ζεστός καφές. Πείτε στον προσωπικό πόση ζάχαρη θέλετε.</p>
                         </div>
-                        <p class="item-desc">Ζεστός καφές. Πείτε στον προσωπικό πόση ζάχαρη θέλετε.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Εσπρεσσάκι</h4>
-                            <span class="item-price">1.20€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Espresso.jpeg" alt="Εσπρεσσάκι" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Εσπρεσσάκι</h4>
+                                <span class="item-price">1.20€</span>
+                            </div>
+                            <p class="item-desc">Διπλή δόση καφέ από τον καλύτερο καφέ μας.</p>
                         </div>
-                        <p class="item-desc">Διπλή δόση καφέ από τον καλύτερο καφέ μας.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Αμερικάνο</h4>
-                            <span class="item-price">1.00€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/americano.webp" alt="Αμερικάνο" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Αμερικάνο</h4>
+                                <span class="item-price">1.00€</span>
+                            </div>
+                            <p class="item-desc">Κλασσικός Αμερικάνο.</p>
                         </div>
-                        <p class="item-desc">Κλασσικός Αμερικάνο.</p>
                     </div>
                 </div>
 
                 <h3 class="subcategory-title">Ροφήματα</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
+                    <div class="menu-item" tabindex="0">
                         <span class="tag">Σοκολάτα</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Ζεστή σοκολάτα</h4>
-                            <span class="item-price">1.50€</span>
+                        <img src="images/Hot_Chocolatw.jpg" alt="Ζεστή σοκολάτα" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Ζεστή σοκολάτα</h4>
+                                <span class="item-price">1.50€</span>
+                            </div>
+                            <p class="item-desc">Ζεστή σοκολάτα, ό,τι πρέπει για το κρύο.</p>
                         </div>
-                        <p class="item-desc">Ζεστή σοκολάτα, ό,τι πρέπει για το κρύο.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Ζεστό τσάι</h4>
-                            <span class="item-price">0.60€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Tea.jpeg" alt="Ζεστό τσάι" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Ζεστό τσάι</h4>
+                                <span class="item-price">0.60€</span>
+                            </div>
+                            <p class="item-desc">Ζεστό τσάι με διάφορες γεύσεις ή βότανα.</p>
                         </div>
-                        <p class="item-desc">Ζεστό τσάι με διάφορες γεύσεις ή βότανα.</p>
                     </div>
                 </div>
             </div>
 
             <div id="cold-drinks" class="menu-section tab-content">
                 <h2 class="section-title">Κρύα ροφήματα</h2>
-
                 <h3 class="subcategory-title">Καφέδες</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Φρέντο Εσπρέσσο</h4>
-                            <span class="item-price">1.30€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Fredo_Espresso.jpeg" alt="Φρέντο Εσπρέσσο" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Φρέντο Εσπρέσσο</h4>
+                                <span class="item-price">1.30€</span>
+                            </div>
+                            <p class="item-desc">Χτυπημένος με πάγο. Η κλασική επιλογή.</p>
                         </div>
-                        <p class="item-desc">Χτυπημένος με πάγο. Η κλασική επιλογή.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Φρέντο Καπουτσίνο</h4>
-                            <span class="item-price">1.40€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="https://placehold.co/70x70/4B5320/e8dcc4?text=🧊☕" alt="Φρέντο Καπουτσίνο" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Φρέντο Καπουτσίνο</h4>
+                                <span class="item-price">1.40€</span>
+                            </div>
+                            <p class="item-desc">Με πλούσιο αφρόγαλα, σερβίρεται παγωμένος.</p>
                         </div>
-                        <p class="item-desc">Με πλούσιο αφρόγαλα, σερβίρεται παγωμένος.</p>
                     </div>
-
-                    <div class="menu-item">
+                    <div class="menu-item" tabindex="0">
                         <span class="tag">Κλασικό</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Φραπέ</h4>
-                            <span class="item-price">0.80€</span>
+                        <img src="images/Frappe.jpeg" alt="Φραπέ" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Φραπέ</h4>
+                                <span class="item-price">0.80€</span>
+                            </div>
+                            <p class="item-desc">Ο παραδοσιακός καφές του στρατού. Πείτε μας πώς τον πίνετε.</p>
                         </div>
-                        <p class="item-desc">Ο παραδοσιακός καφές του στρατού. Πείτε μας πώς τον πίνετε.</p>
                     </div>
                 </div>
 
-                <h3 class="subcategory-title">Ροφήματα & Σοκολάτα</h3>
+                <h3 class="subcategory-title">Ροφήματα</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <span class="tag">Σοκολάτα</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Κρύα Σοκολάτα</h4>
-                            <span class="item-price">1.50€</span>
+                    <div class="menu-item" tabindex="0">
+                        <span class="tag">Δροσιστικό</span>
+                        <img src="images/Cold_Chocolate.jpeg" alt="Κρύα Σοκολάτα" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Κρύα Σοκολάτα</h4>
+                                <span class="item-price">1.60€</span>
+                            </div>
+                            <p class="item-desc">Απολαυστική κρύα σοκολάτα με πάγο.</p>
                         </div>
-                        <p class="item-desc">Γλυκιά και παγωμένη, ιδανική για τις ζεστές μέρες.</p>
                     </div>
                 </div>
 
                 <h3 class="subcategory-title">Αναψυκτικά & Νερό</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Coca Cola</h4>
-                            <span class="item-price">1.00€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Coca_cola.webp" alt="Coca Cola" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Coca Cola</h4>
+                                <span class="item-price">1.00€</span>
+                            </div>
+                            <p class="item-desc">Κουτάκι 330ml.</p>
                         </div>
-                        <p class="item-desc">Κουτάκι 330ml.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <span class="tag">0% Ζάχαρη</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Coca Cola Zero</h4>
-                            <span class="item-price">1.00€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Coca_Cola_Zero.jpeg" alt="Coca Cola Zero" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Coca Cola Zero</h4>
+                                <span class="item-price">1.00€</span>
+                            </div>
+                            <p class="item-desc">Κουτάκι 330ml χωρίς ζάχαρη.</p>
                         </div>
-                        <p class="item-desc">Κουτάκι 330ml χωρίς ζάχαρη.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Πορτοκαλάδα</h4>
-                            <span class="item-price">1.00€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="images/Green_Cola.jpeg" alt="Green Cola" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Green Cola</h4>
+                                <span class="item-price">1.00€</span>
+                            </div>
+                            <p class="item-desc">Κουτάκι 330ml με στέβια.</p>
                         </div>
-                        <p class="item-desc">Κουτάκι 330ml.</p>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Λεμονάδα</h4>
-                            <span class="item-price">1.00€</span>
-                        </div>
-                        <p class="item-desc">Δροσιστική λεμονάδα με ανθρακικό (330ml).</p>
-                    </div>
-
-                    <div class="menu-item">
+                    <div class="menu-item" tabindex="0">
                         <span class="tag">Απαραίτητο</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Εμφιαλωμένο Νερό</h4>
-                            <span class="item-price">0.20€</span>
+                        <img src="https://placehold.co/70x70/4B5320/e8dcc4?text=💧" alt="Εμφιαλωμένο Νερό" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Εμφιαλωμένο Νερό</h4>
+                                <span class="item-price">0.20€</span>
+                            </div>
+                            <p class="item-desc">Παγωμένο μπουκαλάκι 500ml.</p>
                         </div>
-                        <p class="item-desc">Παγωμένο μπουκαλάκι 500ml.</p>
                     </div>
                 </div>
             </div>
 
             <div id="food" class="menu-section tab-content">
                 <h2 class="section-title">Φαγητό & Σνακ</h2>
-
                 <h3 class="subcategory-title">Σφολιάτες & Σάντουιτς</h3>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Τυρόπιτα</h4>
-                            <span class="item-price">1.20€</span>
+                    <div class="menu-item" tabindex="0">
+                        <img src="https://placehold.co/70x70/4B5320/e8dcc4?text=🥧" alt="Τυρόπιτα" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Τυρόπιτα</h4>
+                                <span class="item-price">1.20€</span>
+                            </div>
+                            <p class="item-desc">Κλασική τυρόπιτα κουρού, ζεστή από τον φούρνο.</p>
                         </div>
-                        <p class="item-desc">Κλασική τυρόπιτα κουρού, ζεστή από τον φούρνο.</p>
                     </div>
-
-                    <div class="menu-item">
+                    <div class="menu-item" tabindex="0">
                         <span class="tag">Δημοφιλές</span>
-                        <div class="item-header">
-                            <h4 class="item-name">Ζεστό Τοστ</h4>
-                            <span class="item-price">1.80€</span>
+                        <img src="https://placehold.co/70x70/4B5320/e8dcc4?text=🥪" alt="Ζεστό Τοστ" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h4 class="item-name">Ζεστό Τοστ</h4>
+                                <span class="item-price">1.80€</span>
+                            </div>
+                            <p class="item-desc">Ζαμπόν, τυρί. Ψημένο στην τοστιέρα του ΚΨΜ.</p>
                         </div>
-                        <p class="item-desc">Ζαμπόν, τυρί. Ψημένο στην τοστιέρα του ΚΨΜ.</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Μπαγκέτα Γαλοπούλα</h4>
-                            <span class="item-price">2.20€</span>
-                        </div>
-                        <p class="item-desc">Γαλοπούλα, τυρί, μαρούλι, τυρί κρέμα.</p>
-                    </div>
-                </div>
-
-                <h3 class="subcategory-title">Γλυκά & Αλμυρά Σνακ</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Κρουασάν Σοκολάτας</h4>
-                            <span class="item-price">0.80€</span>
-                        </div>
-                        <p class="item-desc">Μεγάλο κρουασάν με πλούσια γέμιση κακάο.</p>
-                    </div>
-                    
-                    <div class="menu-item">
-                        <div class="item-header">
-                            <h4 class="item-name">Γκοφρέτα</h4>
-                            <span class="item-price">0.50€</span>
-                        </div>
-                        <p class="item-desc">Σοκολατένια γκοφρέτα, ό,τι πρέπει για λιγούρα.</p>
                     </div>
                 </div>
             </div>
 
-        </div> <footer>
+        </div> 
+        
+        <footer>
             <p>ΚΨΜ - Πάντα στη διάθεσή σας</p>
         </footer>
-    </div> <script>
-        function openMenuTab(evt, tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.style.display = 'none';
-            });
-
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            tabBtns.forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            document.getElementById(tabName).style.display = 'block';
-            evt.currentTarget.classList.add('active');
-            
-            // On mobile, scroll up slightly when a new tab is clicked
-            if(window.innerWidth <= 768) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-    </script>
-
+    </div> 
+    
+    <script src="scripts/script.js"></script>
 </body>
-</html>
+    </html>
+    
