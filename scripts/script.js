@@ -1,3 +1,6 @@
+/**
+ * Tab functionality to switch between menu categories
+ */
 function openMenuTab(evt, tabName) {
     // Hide all tab contents
     const tabContents = document.querySelectorAll('.tab-content');
@@ -41,3 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/**
+ * Toggle functionality for Tea options
+ */
+function toggleTeaOptions(evt) {
+    // Σταματάει το κλικ από το να ενεργοποιήσει το γενικό άνοιγμα της εικόνας του menu-item
+    evt.stopPropagation(); 
+    
+    // Βρίσκει το κοντινότερο div με τα options του τσαγιού
+    const optionsDiv = evt.target.closest('.item-content').querySelector('.tea-options');
+    
+    // Εναλλαγή εμφάνισης/απόκρυψης
+    if (optionsDiv.style.display === 'none' || optionsDiv.style.display === '') {
+        optionsDiv.style.display = 'block';
+        evt.target.innerText = 'Απόκρυψη';
+    } else {
+        optionsDiv.style.display = 'none';
+        evt.target.innerText = 'Περισσότερα';
+   
+    }
+        }
