@@ -144,7 +144,7 @@ h1 {
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2.5rem 1.5rem; /* Increased vertical gap for the tags */
+    gap: 2.5rem 1.5rem;
     margin-bottom: 2rem;
 }
 
@@ -156,12 +156,10 @@ h1 {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0; /* Gap handled by image margin for animation */
+    gap: 0;
     cursor: pointer;
     outline: none;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    
-    /* CRITICAL: Changed to visible so tags don't get cut in half */
     overflow: visible; 
 }
 
@@ -181,11 +179,7 @@ h1 {
     border-radius: 6px;
     background-color: var(--olive-drab);
     flex-shrink: 0;
-
-    /* Start position for the "Unticked" state (Slide left) */
     transform: translateX(-20px);
-    
-    /* Transition for sliding back to the left and vanishing */
     transition: 
         width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
         margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -193,7 +187,6 @@ h1 {
         transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* State: Ticked (Slide Right into view) */
 .menu-item.show-image .item-image {
     width: 70px;
     opacity: 1;
@@ -202,7 +195,6 @@ h1 {
     border: 2px solid var(--black);
 }
 
-/* Hover nudge when image is already out */
 .menu-item.show-image:hover .item-image {
     transform: translateX(5px);
 }
@@ -233,14 +225,49 @@ h1 {
     margin-left: 10px;
 }
 
-.item-desc {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: #b0a896;
-    margin: 0;
+/* --- TEA OPTIONS (EXPANDABLE) --- */
+.see-more-btn {
+    background-color: var(--khaki);
+    color: var(--black);
+    border: 1px solid var(--black);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 5px;
+    display: inline-block;
+    transition: background-color 0.2s;
 }
 
-/* --- THE TAG (FIXED) --- */
+.see-more-btn:hover {
+    background-color: var(--sand);
+}
+
+.tea-options {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--sand);
+    border-top: 1px dashed var(--khaki);
+    padding-top: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tea-options strong {
+    color: var(--khaki);
+}
+
+.tea-options ul {
+    margin: 5px 0 15px 0;
+    padding-left: 20px;
+}
+
+.tea-options li {
+    margin-bottom: 3px;
+}
+
+/* --- THE TAG --- */
 .tag {
     background-color: var(--khaki);
     color: var(--black);
@@ -249,11 +276,8 @@ h1 {
     padding: 4px 10px;
     border-radius: 3px;
     position: absolute;
-    
-    /* Positioned outside the box */
     top: -15px; 
     right: 15px;
-    
     z-index: 5;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     border: 1px solid var(--black);
